@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 import { body, validationResult } from "express-validator"
 
 import {createUser, getUserByUsername} from "../db/queries.js"
@@ -23,7 +24,17 @@ export async function signupController(req, res){
     res.sendStatus(200) 
 }
 
-export function loginController(req, res){
-    res.send("Hello World!")
+export async function loginController(req, res){
+    const {username, password} = req.body
+
+    const user = await getUserByUsername(username)
+    if(!user) return res.status(401).json({error: "Username does not exist"})
+
+    const verified = bcrypt.compareSync(password, user.password)
+    if(!verified) return res.status(401).json({error: "Wrong password"})
+
+    jwt.sign(user, process.env.SECRET_KEY, (err, token)=>{
+        res.json({token})
+    })
 }
 
