@@ -26,7 +26,7 @@ export async function signupController(req, res){
 
 export async function loginController(req, res){
     const {username, password} = req.body
-    if(!username || !passoword) return res.sendStatus(401) 
+    if(!username || !password) return res.sendStatus(401) 
 
     const user = await getUserByUsername(username)
     if(!user) return res.status(401).json({error: "Username does not exist"})
