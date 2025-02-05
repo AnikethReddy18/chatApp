@@ -7,5 +7,6 @@ app.use(urlencoded({extended: true}))
 
 app.use("/", router.authRouter);
 app.use("/", router.messageRouter);
+app.use("/", router.userRouter)
 
 app.listen(PORT, ()=>console.log("Listening at http://localhost:"+PORT))

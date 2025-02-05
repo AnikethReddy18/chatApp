@@ -19,7 +19,7 @@ model User{
   password String
   first_name String
   last_name String
-  pfp_url String?
+  pfp_url String @default("https://static.wikia.nocookie.net/villainsfanon/images/3/33/Quandale_Side.webp/revision/latest/thumbnail/width/360/height/360?cb=20221120020917")
   received_messages Message[] @relation("receivedMessages")
   sent_messages Message[] @relation("sentMessages")
 }

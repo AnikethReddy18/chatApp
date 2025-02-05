@@ -42,3 +42,14 @@ export async function getMessages(sender_id, receiver_id){
 
     return messages
 }
+
+export async function updateUser(id, first_name, last_name, pfp_url){
+    await prisma.user.update({
+        data: {
+            first_name, last_name, pfp_url
+        },
+        where: {
+            id
+        }
+    })
+}
