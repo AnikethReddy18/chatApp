@@ -27,3 +27,18 @@ export async function sendMessage(sender_id, receiver_id, content){
         }
     })
 }
+
+export async function getMessages(sender_id, receiver_id){
+    const messages = await prisma.message.findMany({
+        where: {
+            OR:[
+            {sender_id, receiver_id},
+            {sender_id: receiver_id, receiver_id: sender_id}
+            ]
+        },
+
+        orderBy: { date: "asc"}
+    })
+
+    return messages
+}
