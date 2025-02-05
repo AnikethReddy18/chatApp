@@ -5,11 +5,11 @@ export function verifyToken(req, res, next){
 
     if(typeof(bearerHeader) === "undefined") return res.sendStatus(403)
 
-    const bearer = bearer.split(' ')
+    const bearer = bearerHeader.split(' ')
     const token = bearer[1]
     
     jwt.verify(token, process.env.SECRET_KEY, (err, authData)=>{
-        if(err) return res.status(403).json({error: "Middleware is not happy"})
+        if(err) return res.status(403).json({error: "Token Error"})
 
         req.user = authData
         next()    

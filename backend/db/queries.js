@@ -19,3 +19,11 @@ export async function getUserByUsername(username){
 
     return user
 }
+
+export async function sendMessage(sender_id, receiver_id, content){
+    await prisma.message.create({
+        data: {
+            sender_id, receiver_id, content
+        }
+    })
+}
