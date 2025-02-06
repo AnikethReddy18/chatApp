@@ -8,24 +8,27 @@ export function AuthProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem('token'))
     const navigate = useNavigate()
 
-    async function login(username, password){
-        const response = await apiClient.post("/login", {
-            username, password
-        })
-
+    async function login(username, password) {
+        try{
+        const response = await apiClient.post("/login", { username, password },
+            { headers: { 'Content-Type': 'application/x-www-form-urlencoded'} })
+        
         setToken(response.data.token)
-        localStorage.setItem(token)
+        localStorage.setItem("token", response.data.token)
         navigate("/")
+        }catch(err){
+            return err
+        }
     }
 
-    async function logout(){
+    async function logout() {
         setToken(null)
         localStorage.removeItem('token')
     }
 
-    return (<authContext.Provider value={{login, logout, token}}> {children}</authContext.Provider>);
+    return (<authContext.Provider value={{ login, logout, token }}> {children}</authContext.Provider>);
 }
 
-export function useAuth(){
+export function useAuth() {
     return useContext(authContext)
 }
