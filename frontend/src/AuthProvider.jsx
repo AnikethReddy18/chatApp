@@ -14,7 +14,11 @@ export function AuthProvider({ children }) {
             { headers: { 'Content-Type': 'application/x-www-form-urlencoded'} })
         
         setToken(response.data.token)
+
         localStorage.setItem("token", response.data.token)
+        localStorage.setItem("username", response.data.username)
+        localStorage.setItem("pfp_url", response.data.pfp_url)
+
         navigate("/")
         }catch(err){
             return err
@@ -24,6 +28,8 @@ export function AuthProvider({ children }) {
     async function logout() {
         setToken(null)
         localStorage.removeItem('token')
+        localStorage.removeItem('username')
+        localStorage.removeItem('pfp_url')
     }
 
     return (<authContext.Provider value={{ login, logout, token }}> {children}</authContext.Provider>);

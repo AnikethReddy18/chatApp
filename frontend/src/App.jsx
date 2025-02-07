@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import { AuthProvider } from './AuthProvider'
+import { useAuth } from './AuthProvider'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const auth = useAuth()
+
   return (
-    <>Hello World</>
+    <>{console.log("Username: " + localStorage.getItem('username') + "\nPFP: "+localStorage.getItem("pfp_url"))}</>
   )
 }
 
