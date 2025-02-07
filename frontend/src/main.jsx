@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom"
 import './index.css'
 import { AuthProvider } from './AuthProvider.jsx'
 import App from './App.jsx'
@@ -12,10 +12,14 @@ createRoot(document.getElementById('root')).render(
     <Router>
       <AuthProvider>
         <Routes>
+
           <Route path='/login' element={<Login />}/>
+          <Route path="/" element={<Navigate to="/home" replace/>} />
+
           <Route element={<PrivateRoute />}>
               <Route path="/home" element={<App />} />
-            </Route>
+          </Route>
+
         </Routes>
       </AuthProvider>
     </Router>
