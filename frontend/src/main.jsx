@@ -6,6 +6,7 @@ import { AuthProvider } from './AuthProvider.jsx'
 import App from './App.jsx'
 import Login from './pages/Login.jsx'
 import PrivateRoute from './PrivateRoute.jsx'
+import Chat from './pages/Chat.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')).render(
 
           <Route element={<PrivateRoute />}>
               <Route path="/home" element={<App />} />
+              <Route path="/chat/:username" element={<Chat />} />
           </Route>
 
         </Routes>
