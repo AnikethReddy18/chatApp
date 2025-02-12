@@ -18,6 +18,7 @@ export function AuthProvider({ children }) {
         localStorage.setItem("token", response.data.token)
         localStorage.setItem("username", response.data.username)
         localStorage.setItem("pfp_url", response.data.pfp_url)
+        localStorage.setItem("id", response.data.id)
 
         navigate("/")
         }catch(err){
@@ -30,6 +31,7 @@ export function AuthProvider({ children }) {
         localStorage.removeItem('token')
         localStorage.removeItem('username')
         localStorage.removeItem('pfp_url')
+        localStorage.removeItem('id')
     }
 
     return (<authContext.Provider value={{ login, logout, token }}> {children}</authContext.Provider>);
