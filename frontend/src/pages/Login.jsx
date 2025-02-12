@@ -1,5 +1,6 @@
 import { useAuth } from "../AuthProvider";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Login() {
     const [username, setUsername] = useState("")
@@ -15,13 +16,16 @@ function Login() {
         if(err) setError(err.response.data.error)
     }
 
-    return ( 
+    return ( <>
     <form onSubmit={handleFormSubmit}>
         {error && <h1>{error}</h1>}
         <input type="text" name="username" value={username} onChange={(e)=>setUsername(e.target.value)}/>
         <input type="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
         <button>Login</button>
-    </form> );
+    </form> 
+
+    <Link to="/signup">Create Account</Link>
+    </>);
 }
 
 export default Login;

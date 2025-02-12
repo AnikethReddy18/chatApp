@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import apiClient from "../apiClient"
+import { Link } from "react-router-dom";
 
 function Chat() {
   const { username } = useParams();
@@ -42,10 +43,17 @@ function Chat() {
   <div>Chatting with {username}</div>
 
   <div>
+    <Link to="/home">Home</Link>
     {messages.map((message, index)=>{
-     const color = message.sender_id == localStorage.getItem('id') ? "blue" : "red"
-     const textAlign =  message.sender_id == localStorage.getItem('id') ? "right" : "left"
-     return <div key={index} style={{color, textAlign}}>{message.content}</div>
+     const isUser = message.sender_id == localStorage.getItem('id')
+     const color = isUser ? "blue" : "red"
+     const textAlign =  isUser ? "right" : "left"
+     const imgSrc = "https://pbs.twimg.com/profile_images/1725186602832723968/QG5V9M0Q_400x400.jpg"
+
+     return <div key={index} style={{color, textAlign}}>
+      <img src={imgSrc} alt="" width="32px" />
+      <span>{message.content}</span>
+     </div>
     })}
 
     <form onSubmit={sendMessage}>

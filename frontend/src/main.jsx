@@ -7,6 +7,7 @@ import App from './App.jsx'
 import Login from './pages/Login.jsx'
 import PrivateRoute from './PrivateRoute.jsx'
 import Chat from './pages/Chat.jsx'
+import Signup from './pages/Signup.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')).render(
         <Routes>
 
           <Route path='/login' element={<Login />}/>
+          <Route path='/signup' element={<Signup />} />
           <Route path="/" element={<Navigate to="/home" replace/>} />
 
           <Route element={<PrivateRoute />}>
