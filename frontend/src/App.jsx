@@ -6,7 +6,6 @@ import { useAuth } from './AuthProvider'
 import { Link } from 'react-router-dom'
 
 function App() {
-  const [error, setError] = useState("")
   const [usernameInput, setUsernameInput] = useState("")
   const navigate = useNavigate()
   const {logout} = useAuth()
@@ -30,9 +29,9 @@ function App() {
 
   return (
     <>
-    <Link to={"/" + localStorage.getItem('username')}>My Acc</Link>
+    <Link to={"/" + localStorage.getItem('username')} className='link'>My Acc</Link>
 
-    <div>
+    <div className='logo'>
       <img src={localStorage.getItem('pfp_url')} alt="pfp" width={64} height={64} />
       <div>{localStorage.getItem('username')}</div>
     </div>
@@ -43,7 +42,6 @@ function App() {
       <input type="text" value={usernameInput} onChange={(e)=>setUsernameInput(e.target.value)}/>
       <button >Chat!</button>
     </form>
-    {error}
     </>
   )
 }

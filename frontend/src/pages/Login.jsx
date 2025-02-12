@@ -18,13 +18,14 @@ function Login() {
 
     return ( <>
     <form onSubmit={handleFormSubmit}>
+        <h1>Login</h1>
         {error && <h1>{error}</h1>}
-        <input type="text" name="username" value={username} onChange={(e)=>setUsername(e.target.value)}/>
-        <input type="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+        <input type="text" placeholder="username" value={username} onChange={(e)=>setUsername(e.target.value)}/>
+        <input type="password" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
         <button>Login</button>
     </form> 
 
-    <Link to="/signup">Create Account</Link>
+    <Link to="/signup" className="link">Create Account</Link>
     </>);
 }
 

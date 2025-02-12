@@ -29,13 +29,14 @@ function Signup() {
 
     return (
         <form onSubmit={handleFormSubmit}>
+            <h1>Signup</h1>
             {errors && <div>{
-            errors.map((error, index)=><div key={index}>{error.msg}</div>)}
+            errors.map((error, index)=><div key={index} className="error">{error.msg}</div>)}
             </div>}
-            <input type="text" value={firstName} onChange={(e)=>setFirstName(e.target.value)}/>
-            <input type="text" value={lastName} onChange={(e)=>setLastName(e.target.value)}/>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input type="text" placeholder="First Name" value={firstName} onChange={(e)=>setFirstName(e.target.value)}/>
+            <input type="text" placeholder="Last Name" value={lastName} onChange={(e)=>setLastName(e.target.value)}/>
+            <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <button>Signup</button>
         </form>
     )
