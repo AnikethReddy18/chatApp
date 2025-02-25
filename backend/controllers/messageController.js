@@ -12,8 +12,9 @@ export async function sendMessageController(req, res){
 
 export async function getMessagesController(req, res){
     const sender_id = req.user.id
-    const {receiver_id} = req.body
+    const receiver_id = req.query.receiver_id;
 
+    if(receiver_id == undefined) return res.sendStatus(400) 
     if(parseInt(receiver_id) === sender_id) return res.sendStatus(400)
 
     const data = await getMessages(sender_id, parseInt(receiver_id))

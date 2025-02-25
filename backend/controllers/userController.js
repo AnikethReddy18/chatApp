@@ -1,4 +1,4 @@
-import { getUserByUsername, updateUser } from "../db/queries.js";
+import { getUserByUsername, updateUserPFP } from "../db/queries.js";
 
 export async function getUserDetails(req, res){
     const username = req.params.username
@@ -7,12 +7,12 @@ export async function getUserDetails(req, res){
     res.json(user)
 }
 
-export async function updateUserDetails(req, res){
+export async function updateUserPFPController(req, res){
     const username = req.params.username
-    const {first_name, last_name, pfp_url} = req.body
+    const pfp_url = req.body.pfp_url
 
     if(username !== req.user.username) return res.sendStatus(400)
-    await updateUser(parseInt(req.user.id), first_name, last_name, pfp_url)
+    await updateUserPFP(parseInt(req.user.id), pfp_url)
 
     res.sendStatus(200)
 }

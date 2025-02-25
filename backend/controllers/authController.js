@@ -35,7 +35,7 @@ export async function loginController(req, res){
     if(!verified) return res.status(401).json({error: "Wrong password"})
 
     jwt.sign(user, process.env.SECRET_KEY, (err, token)=>{
-        res.json({token})
+        res.json({token , ...user})
     })
 }
 
