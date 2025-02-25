@@ -25,7 +25,7 @@ function Login() {
         <button>Login</button>
     </form> 
 
-    <Link to="/signup" className="link">Create Account</Link>
+    <Link to="/signup" style={{margin: 'auto'}} className="link">Create Account</Link>
     </>);
 }
 

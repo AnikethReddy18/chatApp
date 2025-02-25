@@ -2,18 +2,21 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import apiClient from "../apiClient";
 import { Link } from "react-router-dom";
+import { use } from "react";
 
 function Chat() {
   const { username } = useParams();
   const [receiver_id, setReceiverId] = useState();
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [otherPfp, setOtherPfp] = useState('')
 
   useEffect(() => {
     async function getMessages() {
       const userResponse = await apiClient.get("/user/" + username);
       const id = userResponse.data.id;
       setReceiverId(id);
+      setOtherPfp(userResponse.data.pfp_url)
 
       const response = await apiClient.get("/message", {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
@@ -52,7 +55,7 @@ function Chat() {
         {messages.map((msg, index) => {
           const isUser = msg.sender_id == localStorage.getItem("id");
           const className = isUser ? "message user" : "message other";
-          const imgSrc = "https://pbs.twimg.com/profile_images/1725186602832723968/QG5V9M0Q_400x400.jpg";
+          const imgSrc = isUser ? localStorage.getItem('pfp_url'): otherPfp;
 
           return (
             <div key={index} className={className}>
