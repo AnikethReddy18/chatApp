@@ -2,8 +2,14 @@ import { useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import apiClient from "../apiClient";
 import { Link } from "react-router-dom";
-import socket from '../socket.js'
+import io from 'socket.io-client'
 
+const URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
+const socket = io(URL, {
+  auth: {
+    token: localStorage.getItem("token"),
+  },
+});
 function Chat() {
   const { username } = useParams();
   const [sender_id, setSenderId] = useState()

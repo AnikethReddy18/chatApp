@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom"
 import apiClient from './apiClient'
 import { useAuth } from './AuthProvider'
 import { useRef } from 'react'
-import socket from './socket'
 
 function App() {
 	const [usernameInput, setUsernameInput] = useState("")
@@ -14,10 +13,6 @@ function App() {
 	const dialog = useRef(null)
 	const newPfp = useRef(null)
 
-
-	useEffect(() => {
-		socket.on('connect', () => console.log("Connect from client"));
-	}, [])
 
 	async function chatWithUser(e) {
 		e.preventDefault()

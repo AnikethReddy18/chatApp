@@ -23,12 +23,10 @@ app.use("/", router.messageRouter);
 app.use("/", router.userRouter)
 
 io.on('connection', (socket) => {
-	console.log('User has connected')
 
 	socket.on('joinRoom', ({ sender_id, receiver_id }) => {
 		const roomName = [receiver_id, sender_id].sort().join('-')
 		socket.join(roomName)
-		console.log(roomName)
 	})
 
 	socket.on('sendMessage', ({ sender_id, receiver_id, message }) => {
